@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منارة الإسلام</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- لاحظ: تم إضافة class="home-bg" -->
+<body class="home-bg">
+
+<!-- ============================
+     SIDEBAR
+============================ -->
+<div class="sidebar">
+    <h1>منارة الإسلام</h1>
+
+    <a href="index.html">🏠 الصفحة الرئيسية</a>
+    <a href="quran.html">📖 القرآن الكريم</a>
+    <a href="radios.html">📻 الإذاعات</a>
+    <a href="recitations.html">🎧 التلاوات</a>
+    <a href="azkar.html">🕌 الأذكار</a>
+    <a href="prayer.html">🕋 مواقيت الصلاة</a>
+
+    <button class="mode-btn" onclick="toggleMode()">تغيير الوضع (ليلي/نهاري)</button>
+</div>
+
+<!-- ============================
+     MAIN CONTENT
+============================ -->
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <!-- الوقت والتاريخ -->
+            <div class="time-box">
+                <div id="clock"></div>
+                <div id="todayGregorian"></div>
+                <div id="todayHijri"></div>
+            </div>
+
+            <h1>منارة الإسلام</h1>
+            <p style="font-size:20px; margin-top:10px;">
+                القرآن • الأذكار • الإذاعات • التلاوات • مواقيت الصلاة
+            </p>
+        </div>
+    </section>
+
+    <!-- آية اليوم -->
+    <div class="card">
+        <h2 style="color: var(--gold)">📖 آية اليوم</h2>
+        <p id="ayahText" style="font-size:20px; line-height:1.8; margin-top:10px;"></p>
+    </div>
+
+    <!-- حديث اليوم -->
+    <div class="card">
+        <h2 style="color: var(--gold)">📜 حديث اليوم</h2>
+        <p id="hadithText" style="font-size:20px; line-height:1.8; margin-top:10px;"></p>
+    </div>
+
+    <!-- أقسام المنصة -->
+    <div class="card">
+        <h2 style="color: var(--gold)">أقسام المنصة</h2>
+
+        <a class="section-btn" href="quran.html">📖 القرآن الكريم</a>
+        <a class="section-btn" href="radios.html">📻 الإذاعات الإسلامية المباشرة</a>
+        <a class="section-btn" href="recitations.html">🎧 مكتبة التلاوات الصوتية</a>
+        <a class="section-btn" href="azkar.html">🕌 موسوعة الأذكار</a>
+        <a class="section-btn" href="prayer.html">🕋 مواقيت الصلاة والآذان</a>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

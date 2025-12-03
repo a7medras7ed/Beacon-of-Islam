@@ -1,0 +1,351 @@
+/* ============================
+   منارة الإسلام – التصميم الموحد
+   ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap');
+
+:root {
+    --green: #0b4646;
+    --dark-green: #062f2f;
+    --gold: #d4a017;
+    --light-bg: #f7f7f7;
+    --dark-bg: #0c1b1b;
+    --card: #ffffff;
+    --card-dark: #112626;
+    --text: #0b4646;
+    --text-dark: #ffffff;
+}
+
+/* ============================
+   Dark Mode
+   ============================ */
+body.dark {
+    --light-bg: var(--dark-bg);
+    --card: var(--card-dark);
+    --text: var(--text-dark);
+    background: var(--dark-bg);
+    color: white;
+}
+
+/* ============================
+   General
+   ============================ */
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: var(--light-bg);
+    color: var(--text);
+    transition: 0.3s;
+}
+
+/* ============================
+   Sidebar
+   ============================ */
+.sidebar {
+    width: 260px;
+    background: var(--green);
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 25px 15px;
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.sidebar h1 {
+    text-align: center;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background: var(--dark-green);
+}
+
+/* زر الوضع الليلي */
+.mode-btn {
+    margin-top: 20px;
+    padding: 12px;
+    background: var(--gold);
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ============================
+   MAIN CONTENT
+   ============================ */
+main {
+    margin-right: 280px;
+    padding: 25px;
+}
+
+/* ============================
+   HERO Section
+   ============================ */
+.hero {
+    background: url("bg.jpg") center/cover no-repeat;
+    padding: 55px 25px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #00000070;
+    border-radius: 16px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero h1 {
+    color: var(--gold);
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+/* ============================
+   Time Box
+   ============================ */
+.time-box {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.time-box div {
+    margin: 5px 0;
+}
+
+/* ============================
+   Cards
+   ============================ */
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px #0002;
+    margin-top: 20px;
+}
+
+/* ============================
+   Section Buttons
+   ============================ */
+.section-btn {
+    display: block;
+    background: #eaf5f5;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 12px;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--green);
+    transition: 0.2s;
+}
+
+.section-btn:hover {
+    background: var(--gold);
+    color: black;
+}
+
+/* ============================
+   Responsive
+   ============================ */
+@media (max-width: 900px) {
+    .sidebar {
+        width: 230px;
+    }
+    main {
+        margin-right: 240px;
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        width: 100%;
+    }
+    main {
+        margin-right: 0;
+    }
+    .hero {
+        padding: 35px 15px;
+    }
+}
+/* ============================
+   عناوين الصفحات الداخلية
+   ============================ */
+.page-title {
+    font-size: 26px;
+    margin: 10px 0 5px;
+    text-align: right;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* ============================
+   قائمة السور
+   ============================ */
+.sura-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.sura-item {
+    background: var(--card);
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px #0002;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+.sura-item:hover {
+    background: var(--green);
+    color: #fff;
+}
+/* ============================
+   Glass Effect Prayer Cards
+============================ */
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.prayer-card {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    color: var(--text);
+    box-shadow: 0 4px 20px #00000020;
+    transition: 0.3s;
+}
+
+body.dark .prayer-card {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.prayer-card h3 {
+    font-size: 20px;
+    margin: 0;
+    color: var(--gold);
+}
+
+.prayer-card p {
+    font-size: 22px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+/* الصلاة القادمة: Highlight */
+.next-prayer {
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 12px #d4a017aa;
+    transform: scale(1.05);
+}
+/* -------------------------------
+   Glass Effect Prayer Cards
+-------------------------------- */
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.prayer-card {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 4px 20px #00000020;
+    transition: 0.3s;
+}
+
+body.dark .prayer-card {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.prayer-card h3 {
+    font-size: 20px;
+    margin: 0;
+    color: var(--gold);
+}
+
+.prayer-card p {
+    font-size: 22px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+/* تمييز الصلاة القادمة */
+.next-prayer {
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 12px #d4a017aa;
+    transform: scale(1.05);
+}
+
+/* Popup الأذان */
+#adhanPopup img {
+    border-radius: 16px;
+}
+/* ============================
+   خلفية الصفحة الرئيسية فقط
+============================ */
+.home-bg {
+    background: url("Gemini_Generated_Image_aynlw9aynlw9aynl.png") center/cover fixed no-repeat;
+    position: relative;
+}
+
+/* طبقة تغطية خفيفة فوق الخلفية */
+.home-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35); /* يمكن تخفيفه أو تغميقه */
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}

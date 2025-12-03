@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 موسوعة الأذكار – منارة الإسلام</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .azkar-container {
+            padding: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #0b5f5f55;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .category-list {
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            padding: 12px;
+            background: #e9f7f7;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            background: var(--gold);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .zekr-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 16px;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 20px #0002;
+        }
+
+        body.dark .zekr-card {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .zekr-text {
+            font-size: 20px;
+            line-height: 2;
+            white-space: pre-line;
+        }
+
+        .zekr-meta {
+            margin-top: 10px;
+            color: var(--gold);
+        }
+
+        .zekr-source {
+            color: #eee;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            margin-top: 25px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            font-size: 18px;
+            background: var(--gold);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h1>منارة الإسلام</h1>
+
+    <a href="index.html">🏠 الصفحة الرئيسية</a>
+    <a href="quran.html">📖 القرآن الكريم</a>
+    <a href="radios.html">📻 الإذاعات</a>
+    <a href="recitations.html">🎧 التلاوات</a>
+    <a href="azkar.html">🕌 الأذكار</a>
+    <a href="all_azkar.html">📚 موسوعة الأذكار الكاملة</a>
+    <a href="prayer.html">🕋 مواقيت الصلاة</a>
+
+    <button class="mode-btn" onclick="toggleMode()">تغيير الوضع</button>
+</div>
+
+<!-- MAIN -->
+<main>
+
+    <div class="card">
+
+        <h2 class="page-title">📚 موسوعة الأذكار</h2>
+        <p class="page-subtitle">اختر قسم الأذكار أو استخدم البحث</p>
+
+        <!-- البحث -->
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث..." oninput="searchAzkar()">
+
+        <!-- قائمة الأقسام -->
+        <div class="category-list" id="categoryList"></div>
+
+        <hr style="margin:20px 0; border:1px solid #ffffff33;">
+
+        <!-- عرض الأذكار -->
+        <div id="azkarOutput" class="azkar-container"></div>
+
+    </div>
+
+</main>
+
+<!-- ملفات الأذكار -->
+<script src="fullAzkar_morning.js"></script>
+<script src="fullAzkar_evening.js"></script>
+<script src="fullAzkar_sleep.js"></script>
+<script src="fullAzkar_waking.js"></script>
+<script src="fullAzkar_prayer.js"></script>
+<script src="fullAzkar_tasbeeh.js"></script>
+<script src="fullAzkar_ruqya.js"></script>
+<script src="fullAzkar_mosque.js"></script>
+<script src="fullAzkar_fear.js"></script>
+
+<!-- التجميع -->
+<script src="fullAzkar.js"></script>
+
+<script>
+
+const catList = document.getElementById("categoryList");
+const output = document.getElementById("azkarOutput");
+const searchBox = document.getElementById("searchInput");
+
+/* بناء قائمة الأقسام */
+for (let cat in fullAzkar) {
+    catList.innerHTML += `
+        <div class="category-item" id="cat-${cat}"
+             onclick="openCategory('${cat}')">${cat}</div>
+    `;
+}
+
+/* إظهار/إخفاء القائمة */
+function showCategories(show) {
+    catList.style.display = show ? "block" : "none";
+    searchBox.style.display = show ? "block" : "none";
+}
+
+/* فتح قسم */
+function openCategory(cat) {
+
+    showCategories(false); // إخفاء القائمة
+
+    const arr = fullAzkar[cat];
+    output.innerHTML = "";
+
+    document.querySelectorAll(".category-item").forEach(i => i.classList.remove("active"));
+    const selected = document.getElementById("cat-" + cat);
+    if (selected) selected.classList.add("active");
+
+    arr.forEach(z => {
+        output.innerHTML += `
+            <div class="zekr-card">
+                <div class="zekr-text">${z.text}</div>
+                <div class="zekr-meta">🔁 التكرار: ${z.count}</div>
+                <div class="zekr-source">📘 المصدر: ${z.source}</div>
+                ${z.virtue ? `<div class="zekr-meta">🌿 ${z.virtue}</div>` : ""}
+            </div>
+        `;
+    });
+
+    // زر رجوع
+    output.innerHTML += `
+        <button class="back-btn" onclick="backToList()">⬅ رجوع للقائمة</button>
+    `;
+
+    window.scrollTo(0, 0);
+}
+
+/* الرجوع للقائمة */
+function backToList() {
+    output.innerHTML = "";
+    showCategories(true);
+}
+
+/* البحث */
+function searchAzkar() {
+    let q = searchBox.value.trim();
+    output.innerHTML = "";
+
+    if (q.length < 2) return;
+
+    showCategories(false);
+
+    for (let cat in fullAzkar) {
+        fullAzkar[cat].forEach(z => {
+            if (
+                z.text.includes(q) ||
+                (z.virtue && z.virtue.includes(q)) ||
+                z.source.includes(q)
+            ) {
+                output.innerHTML += `
+                    <div class="zekr-card">
+                        <div class="zekr-text">${z.text}</div>
+                        <div class="zekr-meta">🔁 التكرار: ${z.count}</div>
+                        <div class="zekr-source">📘 المصدر: ${z.source}</div>
+                        ${z.virtue ? `<div class="zekr-meta">🌿 ${z.virtue}</div>` : ""}
+                    </div>
+                `;
+            }
+        });
+    }
+
+    output.innerHTML += `
+        <button class="back-btn" onclick="backToList()">⬅ رجوع للقائمة</button>
+    `;
+}
+
+/* فتح قسم من الهاش */
+window.addEventListener("load", () => {
+    const hash = decodeURIComponent(window.location.hash.replace("#", ""));
+    if (hash && fullAzkar[hash]) openCategory(hash);
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأذكار – منارة الإسلام</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .azkar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .azkar-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 16px;
+            padding: 22px 18px;
+            text-align: center;
+            box-shadow: 0 3px 20px #0002;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        body.dark .azkar-card {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .azkar-card:hover {
+            transform: scale(1.04);
+            border-color: var(--gold);
+        }
+
+        .azkar-card h3 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- ========== SIDEBAR ========== -->
+<div class="sidebar">
+    <h1>منارة الإسلام</h1>
+
+    <a href="index.html">🏠 الصفحة الرئيسية</a>
+    <a href="quran.html">📖 القرآن الكريم</a>
+    <a href="radios.html">📻 الإذاعات</a>
+    <a href="recitations.html">🎧 التلاوات</a>
+    <a href="azkar.html">🕌 الأذكار</a>
+    <a href="all_azkar.html">📚 موسوعة الأذكار الكاملة</a>
+    <a href="prayer.html">🕋 مواقيت الصلاة</a>
+
+    <button class="mode-btn" onclick="toggleMode()">تغيير الوضع</button>
+</div>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main>
+
+    <div class="card">
+
+        <h2 class="page-title">🕌 الأذكار اليومية</h2>
+        <p class="page-subtitle">اختر القسم الذي تريد قراءته</p>
+
+        <div class="azkar-grid">
+
+            <a href="prayer_azkar.html" class="azkar-card">
+                <h3>أذكار بعد الصلاة</h3>
+                <p>التسبيح والتحميد والتكبير وذكر الله بعد الصلوات الخمس</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#الصباح'" class="azkar-card">
+                <h3>أذكار الصباح</h3>
+                <p>أذكار تُقال من الفجر حتى شروق الشمس</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#المساء'" class="azkar-card">
+                <h3>أذكار المساء</h3>
+                <p>أذكار تُقال من العصر حتى الليل</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#النوم'" class="azkar-card">
+                <h3>أذكار النوم</h3>
+                <p>تحصين وراحة قبل النوم</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#الاستيقاظ'" class="azkar-card">
+                <h3>أذكار الاستيقاظ</h3>
+                <p>ذكر الله عند بداية اليوم</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#التسابيح'" class="azkar-card">
+                <h3>التسابيح</h3>
+                <p>سبحان الله — الحمد لله — الله أكبر— وغيرها</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#الرقية الشرعية'" class="azkar-card">
+                <h3>الرقية الشرعية</h3>
+                <p>آيات وأدعية للتحصين والعلاج</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#أذكار الخوف والقلق'" class="azkar-card">
+                <h3>أذكار الخوف والقلق</h3>
+                <p>أدعية للطمأنينة والراحة النفسية</p>
+            </a>
+
+            <a href="#" onclick="window.location='all_azkar.html#أذكار المسجد'" class="azkar-card">
+                <h3>أذكار المسجد</h3>
+                <p>ذكر الدخول والخروج والجلوس</p>
+            </a>
+
+            <!-- زر كبير خاص بالموسوعة -->
+            <a href="all_azkar.html" class="azkar-card" style="border:2px solid var(--gold);">
+                <h3>📚 موسوعة الأذكار الكاملة</h3>
+                <p>كل أقسام الأذكار + البحث — أكثر من 500 ذكر</p>
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

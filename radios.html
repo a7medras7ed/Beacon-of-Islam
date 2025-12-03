@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📻 الإذاعات الإسلامية – منارة الإسلام</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* الخلفية */
+        body {
+            background-image: url("Gemini_Generated_Image_gqqv9mgqqv9mgqqv.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* البنر */
+        .radio-banner {
+            width: 100%;
+            height: 230px;             /* ← الحجم الجديد الممتاز */
+            object-fit: cover;          /* يمنع التشويه */
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 25px #0005;
+        }
+
+        /* شبكة الإذاعات */
+        .radios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* كارت الإذاعة */
+        .radio-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 18px;
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 6px 20px #0003;
+        }
+
+        .radio-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+        }
+
+        .radio-logo {
+            width: 85px;
+            height: 85px;
+            margin: auto;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+        }
+
+        .radio-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .radio-desc {
+            font-size: 15px;
+            opacity: 0.85;
+        }
+
+        /* المشغل العائم */
+        #floating-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--gold);
+            display: none;
+            z-index: 99999;
+        }
+
+        #floating-player audio {
+            width: 100%;
+        }
+
+        #floating-title {
+            color: var(--gold);
+            font-size: 17px;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .close-player {
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            float: left;
+            margin-top: -28px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ======= SIDEBAR ======= -->
+<aside class="sidebar">
+    <h1>منارة الإسلام</h1>
+
+    <a href="index.html">🏠 الرئيسية</a>
+    <a href="prayer.html">🕌 مواعيد الصلاة</a>
+    <a href="quran.html">📖 القرآن الكريم</a>
+    <a href="recitations.html">🎧 التلاوات</a>
+    <a href="radios.html" class="active">📻 الإذاعات</a>
+    <a href="azkar.html">📝 الأذكار</a>
+    <a href="all_azkar.html">📚 موسوعة الأذكار</a>
+
+    <button class="mode-btn" onclick="toggleMode()">الوضع الليلي</button>
+</aside>
+
+
+<!-- ======= MAIN ======= -->
+<main class="content">
+
+    <!-- البنر -->
+    <img src="Gemini_Generated_Image_tdmjfbtdmjfbtdmj.png" class="radio-banner">
+
+    <h2 class="page-title">📡 الإذاعات الإسلامية</h2>
+    <p class="page-subtitle">استمع إلى أفضل الإذاعات الإسلامية بث مباشر</p>
+
+    <div class="radios-grid" id="radio-list"></div>
+
+</main>
+
+
+<!-- ======= المشغل العائم ======= -->
+<div id="floating-player">
+    <span class="close-player" onclick="closePlayer()">✖</span>
+    <div id="floating-title"></div>
+    <audio id="floating-audio" controls autoplay></audio>
+</div>
+
+
+<script src="script.js"></script>
+
+<!-- سكربت الإذاعات -->
+<script>
+    const radios = [
+        { name: "إذاعة القرآن الكريم المصرية", url: "https://n03.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABmuDjOYsAU-IYAY-NceCeqQ" },
+        { name: "إذاعة القرآن الكريم السعودية", url: "https://stream.radiojar.com/4wqre23fytzuv" }
+    ];
+
+    const radioList = document.getElementById("radio-list");
+    const floatingPlayer = document.getElementById("floating-player");
+    const floatingAudio = document.getElementById("floating-audio");
+    const floatingTitle = document.getElementById("floating-title");
+
+    radios.forEach(radio => {
+
+        const box = document.createElement("div");
+        box.className = "radio-card";
+
+        box.innerHTML = `
+            <img src="Gemini_Generated_Image_io2oexio2oexio2o.png" class="radio-logo">
+            <div class="radio-title">${radio.name}</div>
+            <div class="radio-desc">اضغط للتشغيل المباشر</div>
+        `;
+
+        box.onclick = () => {
+            floatingTitle.innerText = radio.name;
+            floatingAudio.src = radio.url;
+
+            floatingPlayer.style.display = "block";
+
+            floatingAudio.play().catch(() => {});
+        };
+
+        radioList.appendChild(box);
+    });
+
+    function closePlayer() {
+        floatingAudio.pause();
+        floatingPlayer.style.display = "none";
+    }
+</script>
+
+</body>
+</html>

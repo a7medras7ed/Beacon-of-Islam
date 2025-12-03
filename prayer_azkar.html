@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أذكار الصلاة – منارة الإسلام</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ============================
+     SIDEBAR
+============================ -->
+<div class="sidebar">
+    <h1>منارة الإسلام</h1>
+
+    <a href="index.html">🏠 الصفحة الرئيسية</a>
+    <a href="quran.html">📖 القرآن الكريم</a>
+    <a href="radios.html">📻 الإذاعات</a>
+    <a href="recitations.html">🎧 التلاوات</a>
+    <a href="azkar.html">🕌 الأذكار</a>
+    <a href="prayer.html">🕋 مواقيت الصلاة</a>
+
+    <button class="mode-btn" onclick="toggleMode()">تغيير الوضع (ليلي/نهاري)</button>
+</div>
+
+<!-- ============================
+     MAIN CONTENT
+============================ -->
+<main>
+
+    <div class="card">
+
+        <h2 class="page-title">📿 أذكار الصلاة</h2>
+        <p class="page-subtitle">اختر الموضع داخل الصلاة لعرض الدعاء المناسب</p>
+
+        <!-- الأقسام -->
+        <div class="section-btn" onclick="openSection('start')">✨ أدعية الاستفتاح</div>
+        <div class="section-btn" onclick="openSection('ruku')">🕌 أدعية الركوع</div>
+        <div class="section-btn" onclick="openSection('standing')">📌 أدعية الرفع من الركوع</div>
+        <div class="section-btn" onclick="openSection('sujood')">🤲 أدعية السجود</div>
+        <div class="section-btn" onclick="openSection('between')">🧎‍♂️ الجلوس بين السجدتين</div>
+        <div class="section-btn" onclick="openSection('tilawa')">📖 دعاء سجود التلاوة</div>
+        <div class="section-btn" onclick="openSection('tashahud1')">📝 التشهد الأول</div>
+        <div class="section-btn" onclick="openSection('tashahud2')">📝 التشهد الأخير</div>
+        <div class="section-btn" onclick="openSection('before_salam')">🌙 أدعية قبل السلام</div>
+        <div class="section-btn" onclick="openSection('qunut')">💛 دعاء القنوت</div>
+        <div class="section-btn" onclick="openSection('friday')">📢 دعاء خطبة الجمعة</div>
+
+        <!-- مكان عرض الأذكار -->
+        <div id="azkar" style="display:none; margin-top:20px;"></div>
+
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+<script src="prayer_azkar.js"></script>
+
+</body>
+</html>

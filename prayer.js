@@ -1,10 +1,10 @@
 // =================== صور الأذان ===================
 const adhanImages = {
-    "الفجر": "Gemini_Generated_Image_sqb8gqsqb8gqsqb8.png",
-    "الظهر": "Gemini_Generated_Image_k2vei8k2vei8k2ve.png",
-    "العصر": "Gemini_Generated_Image_lxdildlxdildlxdi.png",
-    "المغرب": "Gemini_Generated_Image_l64txnl64txnl64t.png",
-    "العشاء": "Gemini_Generated_Image_v1lhu4v1lhu4v1lh.png"
+    "الفجر": "adhan_fajr.png",
+    "الظهر": "adhan_duhr.png",
+    "العصر": "adhan_asr.png",
+    "المغرب": "adhan_maghrib.png",
+    "العشاء": "adhan_isha.png"
 };
 
 // ملف الصوت
@@ -73,9 +73,9 @@ function openAdhanPopup(prayerName) {
     const img = document.getElementById("adhanImage");
     const audio = document.getElementById("adhanAudio");
 
-    img.src = adhanImages[prayerName];
-    audio.src = adhanSound;
-    audio.play().catch(()=>{});
+    img.src = adhanImages[prayerName];    // الصورة
+    audio.src = adhanSound;               // الصوت
+    audio.play().catch(()=>{});           // تشغيل الصوت
 
     popup.style.display = "flex";
     adhanPlayed = true;
@@ -105,10 +105,12 @@ function startCountdown(timings) {
             ["العشاء", timings.Isha]
         ];
 
+        // إزالة التمييز من جميع البطاقات
         document.querySelectorAll(".prayer-card").forEach(c => {
             c.classList.remove("next-prayer");
         });
 
+        // تحديد الصلاة القادمة
         for (let p of order) {
             let [name, time] = p;
             let prayerDate = new Date();
@@ -122,6 +124,7 @@ function startCountdown(timings) {
             }
         }
 
+        // لو مفيش صلاة متبقية → صلاة الفجر غدًا
         if (!nextPrayerTime) {
             nextPrayerTime = new Date();
             nextPrayerTime.setDate(nextPrayerTime.getDate() + 1);
@@ -130,23 +133,23 @@ function startCountdown(timings) {
             nextPrayerName = "الفجر";
         }
 
-        // تمييز الكارت
+        // تمييز البطاقة
         const nextCard = document.getElementById(`card-${nextPrayerName}`);
         if (nextCard) nextCard.classList.add("next-prayer");
 
-        // 🔥 تشغيل الأذان في الوقت الصحيح
+        // 🔥 تشغيل الأذان وقت الصلاة
         let nowString = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
 
         if (nowString === timings[nextPrayerName] && !adhanPlayed) {
             openAdhanPopup(nextPrayerName);
         }
 
-        // إعادة السماح بعد دقيقة
+        // إعادة السماح بالتشغيل بعد الدقيقة
         if (nowString !== timings[nextPrayerName]) {
             adhanPlayed = false;
         }
 
-        // العد التنازلي
+        // العدّ التنازلي
         let diff = nextPrayerTime - now;
         let hours = Math.floor(diff / (1000 * 60 * 60));
         let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
